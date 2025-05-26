@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Extending Zeeman-Doppler Imaging to Pulsating Magnetic Stars</title>
+    <link rel="stylesheet" href="poster.css">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1">
+    <!-- Based on a poster template from https://github.com/cpitclaudel/academic-poster-template -->
+
+          <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+          <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&amp;family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
+    
+          </head>
+
+  <body vocab="http://schema.org/" typeof="ScholarlyArticle">
+    <header role="banner">
+      <aside></aside>
+      <div>
+        <h1 property="headline">Extending Zeeman-Doppler Imaging to Pulsating Magnetic Stars</h1>
+                  <h2 property="alternativeHeadline">Modelling V2052 Oph using the PIMMS code</h2>
+                <address>
+            <a property="author">Chloe Gutteridge</a>,
+  <a property="author">Coralie Neiner</a>, and
+  <a property="author">Claude Catala</a>
+ <!-- |   <a property="sourceOrganization">LIRA, Observatoire de Paris</a> -->
+        </address>
+        <span class="publication-info">
+                      <span property="publisher">CHFT Users Meeting 2025</span>,
+            <time pubdate property="datePublished" datetime="2025-05-26">26th - 28th of May, 2025</time>
+                  </span>
+      </div>
+      <aside>
+         <a><img src="logo-lira_blanc.png" alt="LIRA logo" style="height: 2.5em; padding-right: 10px;"></a>
+      </aside>
+    </header>
+
+    <main property="articleBody">
+        <article property="abstract">
+    <header><h3>Introduction</h3></header>
+
+    <p>Zeeman-Doppler Imaging (ZDI) is a technique that inverts a series of spectropolarimetric 
+    data allowing the reconstruction of stellar magnetic fields, which provides valuable insights 
+    into their strength, geometries, and time evolution. However, ZDI normally assumes that stellar 
+    line profile variations (LPVs) are due solely to rotation - an assumption that breaks down for 
+    pulsating stars, where oscillations introduce additional Doppler shifts. 
+    </p>
+    <p>
+    We present the Pulsation-Informed Magnetic Mapping of Stars (PIMMS) code, an adaptation of 
+    the ZDIpy code of Folsom et al. (2018). By modelling the pulsation modes identified with 
+    spectroscopic, spectropolarimetric, and/or photometric observations, PIMMS creates a time-dependent 
+    surface velocity map which accounts for all causes of Doppler shifts of local lines. This 
+    allows the causes of LPVs associated with rotation, i.e. magnetic fields and spots, to be 
+    accurately assigned locations on the stellar surface preventing errors in the 
+    magnetic field strength and geometry; and spot locations, relative brightness, and sizes. This 
+    is crucial for obtaining the correct stellar and magnetic properties. </p>
+  </article>
+
+  <article>
+    <header><h3>The PIMMS Code</h3></header>
+
+$$p_{ij}(v,t) = \frac{1}{\sqrt{2\pi}\sigma}\exp\left(-\frac{(v_{ij}(t)-v)^2}{2\sigma^2}\right)$$
+<p>
+PIMMS models local line profiles as Gaussians with time-dependent Doppler shifts 
+\(v_{ij}(t)\), dependent on the rotational and pulsational velocities. We choose to use the
+pulsation velocity derivation of Aerts et al. (2010).
+</p> 
+<p>
+Mode parameters \(\ell\), \(m\), and the frequency \(f\) must be provided for each mode, 
+while phase at \(t=0\), velocity amplitude and the ratio between tangential and radial displacements
+are fitted.
+</p> 
+
+<!--
+    <ul>
+      <li>Core calculus for rule-based language amenable to formal reasoning about functionality and performance</li>
+      <li>Cycle-accurate operational semantics</li>
+      <li>Proof of one-rule-at-a-time abstraction</li>
+      <li>Full Coq mechanization of the semantics</li>
+      <li>Verified compilation to RTL</li>
+      <li>Performance case-study of a pipelined processor</li>
+    </ul>
+    -->
+  </article>
+
+  <article>
+    <header><h3>Tested on a simulated β Cep variable</h3></header>
+    The magnetic field is not correctly reconstructed without considering the pulsational velocities.
+    <div class="columns-center">
+      <img style="width: 100%" src="in_mag.png" alt="Input" />
+      <img style="width: 100%" src="out_mag_spot_zdipy.png" alt="ZDIpy output" />
+      <img style="width: 100%" src="out_mag_spot.png" alt="PIMMS output" />
+    </div>
+    
+    <div class="columns-center">
+      <aside class="xxs"> Left: input magnetic field </aside>
+      <aside class="xxs"> Middle: output magnetic field from ZDIpy </aside>
+      <aside class="xxs"> Right: output magnetic field from PIMMS </aside>
+    </div>
+    
+    
+  </article>
+
+  <article>
+    <header><h3>Application to V2052 Oph</h3></header>
+    <img style="width: 100%" src="v2052_oph_map-1.png" alt="Input" />
+    We expect an off-centred dipole field (Neiner et al. 2012), with \(\beta = \)
+  </article>
+    
+  <article>
+    <header><h3>Conclusion</h3></header>
+	<p>Pulsation velocities must be considered when performing Zeeman-Doppler imaging, and this is now
+	possible with the PIMMS code. Understanding the surface magnetic fields of hot main sequence
+	pulsators will allow us to perform magneto-asteroseismology, i.e. asteroseismology with the
+	additional constraint of the magnetic field. This has previously been performed for V2052 Oph, 
+	which observed at inhibition of core overshooting (Briquet et al. 2012). Such studies will
+	allow us to better understand the main sequence lifetimes of hot stars, which is currently
+	poorly understood due to uncalibrated prescriptions for magnetic fields in evolutionary models.
+	stars. With ESPaDOnS at CFHT (and other spectropolarimeters), we are currently obtaining data 
+	of SPB, β Cep, and δ Sct variables for use with PIMMS, and with the goal of performing 
+	magneto-asteroseismology.</p>
+  </article>
+
+<!--
+  
+
+    <div class="columns-center">
+      <img src="filler.jpg" alt="Kôika's semantics" />
+      <span class="xxl">∈</span>
+      <img src="filler.jpg" alt="Valid behaviors under one-rule-at-a-time semantics" />
+    </div>
+
+    <b>ORAAT property enables local, modular reasoning</b>
+    <b>Proof mechanization enables semantics exploration</b>
+  </article>
+
+  <article>
+    <header><h3>Compilation to RTL</h3></header>
+
+    <div class="columns-center" style="grid-template-columns: 40fr 60fr">
+      <img style="width: 60%" src="filler.jpg" alt="RTL circuit" />
+      <div class="center">
+        Sequential semantics<br>
+        ↓<br/>
+        Concurrent RTL with deferred checks
+      </div>
+    </div>
+
+    <hr>
+
+    <img style="width: 80%" src="filler.jpg" alt="Semantic of log updates for writes.  Given a circuit corresponding to a semantic log and a circuit corresponding to a semantic value, an append to the log is compiled to a hardware log with the write flag set to 1 and the data field set to the value circuit." />
+
+    <hr>
+
+    <p class="center">
+      Verified circuit optimizations (constant propagation, mux elimination, partial evaluation) reduce the overhead of dynamic scheduling &amp; conflict resolution.
+    </p>
+  </article>
+
+  <article>
+    <header><h3>Compiler correctness</h3></header>
+
+    <pre class="center-self" data-lang="coq">
+Theorem CompilerCorrectness init schedule:
+  interp_s   init schedule =
+  interp_rtl init (compile schedule).
+</pre>
+    <div class="columns-center">
+      <img src="filler.jpg" alt="Kôika's semantics" />
+      <span class="xxl">≡</span>
+      <img src="filler.jpg" alt="RTL semantics" />
+    </div>
+  </article>
+
+  <article>
+    <header><h3>Output and downstream synthesis</h3></header>
+
+    <div class="columns-center" style="grid-template-columns: 60fr 40fr">
+      <img style="border: thin solid var(--aluminum-6)" src="filler.jpg" alt="Fragment of YoSys output on the Collatz example" />
+      <ul>
+        <li>Kôika outputs code in a safe subset of Verilog.</li>
+        <li>Downstream tools perform further optimizations and can generate FPGA and ASICs designs.</li>
+      </ul>
+    </div>
+  </article>
+
+  <article>
+    <header><h3>Hardware artifacts so far</h3></header>
+
+    <ul>
+      <li>Arithmetic-pipeline performance proof (on paper)</li>
+      <li>Kôika port of a simple BSV RISCV core (most of RV32i&amp;e, critical path and area overhead ≤ 10%)</li>
+    </ul>
+
+    <img src="filler.jpg" alt="Terminal window showing ASCII art of the PLDI20 logo, printed by running our RISCV core in simulation" />
+  </article>
+
+  <article>
+    <header><h3>Next steps</h3></header>
+
+    <ul>
+      <li>Kôika-level simulation, leveraging high-level structure for performance</li>
+      <li>Verification of performance (pipelining behavior) and timing properties of the RISCV core</li>
+      <li>Multi-core systems &amp; enclaves, with proofs of safety from timing side-channels</li>
+      <li>Further language design, including native modularity</li>
+    </ul>
+  </article>
+  <figure style="flex-grow: 9999999">
+    <img style="width: 70%; margin: 5% 0" src="filler.jpg" alt="Kôika logo" />
+  </figure>
+  -->
+    </main>
+
+    <footer>
+      <address class="monospace">  <a></a>
+</address>
+      <address class="monospace">  chloe.gutteridge@obspm.fr
+</address>
+                </footer>
+  </body>
+</html>
